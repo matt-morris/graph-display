@@ -1,3 +1,8 @@
+let getParam = (key) => {
+  let result = new RegExp(key + '=([^&]*)', 'i').exec(window.location.search);
+  return result && unescape(result[1]) || '';
+};
+
 let canvas = document.querySelector('#app');
 
 let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -6,12 +11,14 @@ let height = Math.max(document.documentElement.clientHeight, window.innerHeight 
 canvas.width = width;
 canvas.height = height;
 
+let nodeCount = parseInt(getParam('nodes')) || Math.ceil(width * height / 15000);
+
 let ctx = canvas.getContext('2d');
 
 let frameRate = 0;
 
 let nodes = [];
-for (let i = 0; i < 57; i++) {
+for (let i = 0; i < nodeCount; i++) {
   nodes.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, dx: (0.5 - Math.random()) * (Math.random() * 2), dy: (0.5 - Math.random()) * (Math.random() * 2) });
 }
 
