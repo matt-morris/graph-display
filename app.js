@@ -11,7 +11,7 @@ let ctx = canvas.getContext('2d');
 let frameRate = 0;
 
 let nodes = [];
-for (let i = 0; i < 37; i++) {
+for (let i = 0; i < 57; i++) {
   nodes.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, dx: (0.5 - Math.random()) * (Math.random() * 2), dy: (0.5 - Math.random()) * (Math.random() * 2) });
 }
 
@@ -40,7 +40,7 @@ let line = (x1, y1, x2, y2, lineWidth) => {
 };
 
 let draw = () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, width, height);
   for (n in nodes) {
     n = nodes[n];
     if (Math.random() > 0.85 && n.dx > 0.5 && n.dx < 5) {
@@ -49,10 +49,10 @@ let draw = () => {
     if (Math.random() > 0.85 && n.dy > 0.5 && n.dy < 5) {
       n.dy += (0.5 - Math.random());
     }
-    if (n.x > canvas.height) { n.x = 0; }
-    if (n.x < 0) { n.x = canvas.height; }
-    if (n.y > canvas.width) { n.y = 0; }
-    if (n.y < 0) { n.y = canvas.width; }
+    if (n.x > width) { n.x = 0; }
+    if (n.x < 0) { n.x = width; }
+    if (n.y > height) { n.y = 0; }
+    if (n.y < 0) { n.y = height; }
     n.x += n.dx;
     n.y += n.dy;
     circle(n.x, n.y, 3);
