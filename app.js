@@ -11,6 +11,8 @@ let height = Math.max(document.documentElement.clientHeight, window.innerHeight 
 canvas.width = width;
 canvas.height = height;
 
+let range = Math.max(width, height, 500) / 5;
+
 let nodeCount = parseInt(getParam('nodes')) || Math.ceil(width * height / 15000);
 
 let ctx = canvas.getContext('2d');
@@ -56,10 +58,10 @@ let draw = () => {
     if (Math.random() > 0.85 && n.dy > 0.5 && n.dy < 5) {
       n.dy += (0.5 - Math.random());
     }
-    if (n.x > width) { n.x = 0; }
-    if (n.x < 0) { n.x = width; }
-    if (n.y > height) { n.y = 0; }
-    if (n.y < 0) { n.y = height; }
+    if (n.x > width + range) { n.x = -range; }
+    if (n.x < -range) { n.x = width + range; }
+    if (n.y > height + range) { n.y = -range; }
+    if (n.y < -range) { n.y = height + range; }
     n.x += n.dx;
     n.y += n.dy;
     circle(n.x, n.y, 3);
