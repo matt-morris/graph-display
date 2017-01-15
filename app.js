@@ -13,7 +13,7 @@ canvas.height = height;
 
 let range = Math.max(width, height, 750) / 5;
 
-let nodeCount = parseInt(getParam('nodes')) || Math.ceil(width * height / 15000);
+let nodeCount = parseInt(getParam('nodes')) || Math.ceil(width * height / 15000) + 3;
 
 let ctx = canvas.getContext('2d');
 
