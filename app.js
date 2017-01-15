@@ -11,7 +11,7 @@ let height = Math.max(document.documentElement.clientHeight, window.innerHeight 
 canvas.width = width;
 canvas.height = height;
 
-let range = Math.max(width, height, 750) / 5;
+let range = parseInt(getParam('range')) || Math.max(width, height, 750) / 5;
 
 let nodeCount = parseInt(getParam('nodes')) || Math.ceil(width * height / 15000) + 3;
 
