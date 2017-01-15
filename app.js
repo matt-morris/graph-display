@@ -68,7 +68,7 @@ let draw = () => {
     for (nn in nodes) {
       nn = nodes[nn];
       if (n === nn) break;
-      if (distance(n, nn) < 250) {
+      if (distance(n, nn) < range) {
         let w = Math.max(Math.min(2.5 - distance(n, nn) / 100, 4), 0.1);
         line(n.x, n.y, nn.x, nn.y, w);
       }
