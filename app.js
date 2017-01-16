@@ -14,6 +14,7 @@ canvas.height = height;
 let range = parseInt(getParam('range')) || Math.max(width, height, 750) / 5;
 
 let nodeCount = parseInt(getParam('nodes')) || Math.ceil(width * height / 15000) + 3;
+let trackingThreshold = parseInt(getParam('tracking_threshold')) || undefined;
 
 let ctx = canvas.getContext('2d');
 
@@ -35,6 +36,12 @@ let circle = (x, y, r) => {
   ctx.fill();
   ctx.lineWidth = r;
   ctx.strokeStyle = '#333';
+  ctx.stroke();
+};
+
+let square = (x, y, s) => {
+  ctx.rect(x, y, s, s);
+  ctx.strokeStyle = '#ff0';
   ctx.stroke();
 };
 
@@ -65,6 +72,14 @@ let draw = () => {
     n.x += n.dx;
     n.y += n.dy;
     circle(n.x, n.y, 3);
+
+    if (trackingThreshold) {
+      if (n.dx > trackingThreshold || n.dy > trackingThreshold) { n.tracking = true; }
+
+      if (n.tracking) {
+        square(n.x - 10, n.y - 10, 20);
+      }
+    }
     for (nn in nodes) {
       nn = nodes[nn];
       if (n === nn) break;
